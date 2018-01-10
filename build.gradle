@@ -33,7 +33,6 @@ allprojects {
         scalaCheck = '1.13.5'
         scalaTest = '3.0.4'
         junitVersion = '4.12'
-        kafkaVersion = '0.10.2.0'
         mockitoVersion = '2.7.13'
         slf4jVersion = "1.7.7"
         jacksonVersion = "2.9.2"
@@ -44,7 +43,6 @@ allprojects {
     repositories {
         mavenLocal()
         mavenCentral()
-        maven { url "http://packages.confluent.io/maven/" }
         maven { url "http://repo.typesafe.com/typesafe/releases/" }
     }
 
