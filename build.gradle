@@ -28,18 +28,18 @@ allprojects {
     targetCompatibility = 1.8
 
     ext {
-        scalaMajorVersion = '2.11'
-        scala = '2.11.7'
-        scalaCheck = '1.11.1'
-        scalaTest = '2.2.6'
+        scalaMajorVersion = '2.12'
+        scala = '2.11.3'
+        scalaCheck = '1.13.5'
+        scalaTest = '3.0.4'
         junitVersion = '4.12'
         kafkaVersion = '1.0.0'
         scalaLoggingVersion = '2.1.2'
         mockitoVersion = '2.7.13'
         slf4jVersion = "1.7.7"
-        jacksonVersion = "2.9.1"
-        json4sVersion = "3.3.0"
-        sqlCore="1.0"
+        jacksonVersion = "2.9.2"
+        json4sVersion = "3.5.3"
+        sqlCore="2.0"
     }
 
     repositories {
@@ -56,9 +56,8 @@ allprojects {
 
     dependencies {
         compile "org.scala-lang:scala-library:$scala"
-        compile "com.typesafe.scala-logging:scala-logging-slf4j_$scalaMajorVersion:$scalaLoggingVersion"
 
-        compile ("com.landoop:sql-core_$scalaMajorVersion:$sqlCore")
+        compile ("com.landoop:sql-core:$sqlCore")
 
         compile "com.fasterxml.jackson.core:jackson-databind:$jacksonVersion"
         compile "com.fasterxml.jackson.module:jackson-module-scala_$scalaMajorVersion:$jacksonVersion"
