@@ -20,8 +20,8 @@ import com.fasterxml.jackson.databind.node._
 import com.landoop.sql.{Field, SqlContext}
 import org.apache.calcite.sql.SqlSelect
 
-import scala.collection.JavaConversions._
-import scala.collection.mutable.{ArrayBuffer, Map => MutableMap}
+import scala.collection.JavaConverters._
+import scala.collection.mutable.{ArrayBuffer}
 import scala.util.{Failure, Success, Try}
 
 object JsonSql {
@@ -141,7 +141,7 @@ object JsonSql {
                       }
                     } else {
                       val key = Option(f.parents).map(_.mkString(".")).getOrElse("")
-                      on.fieldNames().filter { name =>
+                      on.fieldNames().asScala.filter { name =>
                         fieldsParentMap.get(key).forall(!_.contains(name))
                       }.foreach { name =>
                         addNode(on.get(name), newNode, getNextFieldName(name), fieldPath)
@@ -212,7 +212,7 @@ object JsonSql {
           newNode.set(parent, from(node, parents :+ parent))
         }
         case Left(parent) if parent.name == "*" =>
-          node.fieldNames().withFilter { f =>
+          node.fieldNames().asScala.withFilter { f =>
             !fields.exists {
               case Left(field) if field.name == f => true
               case _ => false
@@ -225,7 +225,7 @@ object JsonSql {
       }
     }
     else {
-      node.fieldNames()
+      node.fieldNames().asScala
         .foreach { field =>
           newNode.set(field, from(node.get(field), parents :+ field))
         }
@@ -241,8 +241,8 @@ object JsonSql {
       if (fields.size == 1 && fields.head.isLeft && fields.head.left.get.name == "*") {
         array
       } else {
-        val newElements = array.elements().map(from(_, parents)).toList
-        new ArrayNode(JsonNodeFactory.instance, newElements)
+        val newElements = array.elements().asScala.map(from(_, parents)).toList
+        new ArrayNode(JsonNodeFactory.instance, newElements.asJava)
       }
     }
   }
