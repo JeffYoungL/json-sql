@@ -53,9 +53,7 @@ allprojects {
 
     dependencies {
         compile "org.scala-lang:scala-library:$scala"
-
         compile ("com.landoop:sql-core:$sqlCore")
-
         compile "com.fasterxml.jackson.core:jackson-databind:$jacksonVersion"
         compile "com.fasterxml.jackson.module:jackson-module-scala_$scalaMajorVersion:$jacksonVersion"
         compile "org.json4s:json4s-jackson_$scalaMajorVersion:$json4sVersion"
@@ -67,7 +65,6 @@ allprojects {
         testCompile "org.apache.curator:curator-test:3.1.0"
         testCompile 'org.powermock:powermock-module-junit4:1.6.5'
         testCompile 'org.pegdown:pegdown:1.1.0'
-
     }
 
     test {
